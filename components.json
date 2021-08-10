@@ -1,0 +1,5 @@
+{
+  "test-comp": "./packages/test-comp/index.js",
+  "scrollbar": "./packages/scrollbar/index.js",
+  "tree-select": "./packages/tree-select/index.js"
+}

@@ -1,0 +1,8 @@
+/**
+*css命名规范遵循BEM .block-name__run-name--modifier-name
+*如：run-card 表示一个block（块），run-card__title __表示run-card下面的子元素title，run-button--primary表示是主要按钮
+*/
+$namespace: 'run';
+$runner-separator: '__';        //元素 __header
+$modifier-separator: '--';      //修饰符 --text
+$state-prefix: 'is-';

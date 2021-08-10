@@ -1,0 +1,7 @@
+@import "basescss/mixins";
+@import "basescss/var";
+
+@include b(test-comp) {
+    font-size: $--font-size-base;
+    color: $--color-primary;
+}
