@@ -8,6 +8,8 @@ components.json	组件json，生成入口文件的src/index.js关键文件
 
 组件开发流程
 
+npm run theme:ele				// 生成element主题包（引用配置参考.babelrc 针对 babel-plugin-component 的配置）
+
 npm run new xxx					// 生成组件架包（xxx组件名，推荐a或a-b形式）
 
 npm run clean						// 清除编译包
@@ -40,6 +42,8 @@ npm run build						// 编译发布文件 lib/index.js、lib/{componentname}.js�
     "packages"
   ],
   "scripts": {
+    //element主题更换
+    "theme:ele": "rimraf packages/theme-element/theme && et -c packages/theme-element/element-variables.scss -o packages/theme-element/theme",
   	//生成单组件架包
   	"new": "node build/bin/new.js",
   	//生成主题文件
