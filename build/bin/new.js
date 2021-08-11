@@ -24,6 +24,14 @@ const componentname = process.argv[2];
 const ComponentName = uppercamelcase(componentname);
 const PackagePath = path.resolve(__dirname, '../../packages', componentname);
 
+function fileExists(filePath) {
+  try {
+      return fs.statSync(filePath).isFile();
+  } catch (err) {
+      return false;
+  }
+}
+
 // package单组件信息及对应主题文件{componentname}.scss
 const Files = [{
     filename: 'index.js',
@@ -67,6 +75,9 @@ fileSave(path.join(__dirname, '../../components.json'))
 
 // 添加到 index.scss
 const sassPath = path.join(__dirname, '../../packages/theme-chalk/src/index.scss');
+if(!fileExists(sassPath)) {
+  fs.writeFileSync(sassPath, '', 'utf8');
+}
 const sassImportText = `${fs.readFileSync(sassPath)}@import "./${componentname}.scss";`;
 fileSave(sassPath)
   .write(sassImportText, 'utf8')
