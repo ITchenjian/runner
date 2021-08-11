@@ -1,8 +1,8 @@
 /**
  * 构建单组件架包
- * 如开发input组件 运行 npm run new input 即可生成对应组件的目录结构
- * 将单个组件入口文件 packages/{componentname}/index.js 注册到 components.json 文件
- * 在 packages/theme-chalk 下生成对应组件的.scss文件，并注册到packages/theme-chalk/src/index.scss
+ * 如开发test-comp组件 运行 npm run new test-comp 即可生成对应组件的目录结构(packages/test-comp、packages/theme-chalk/src/test-comp.scss)
+ * 组件入口文件 packages/{componentname}/index.js 注册到 components.json
+ * 生成的.scss文件注册到 packages/theme-chalk/src/index.scss
  */
 'use strict';
 

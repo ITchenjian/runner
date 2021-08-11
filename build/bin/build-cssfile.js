@@ -1,3 +1,7 @@
+/**
+ * 构建主题文件packages/theme-chalk/src/index.scss
+ * 如果在components.json不存在相应组件的.scss文件，会自动创建一个相应空文件
+ */
 var fs = require('fs');
 var path = require('path');
 var Components = require('../../components.json');
