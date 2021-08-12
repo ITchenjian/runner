@@ -1,7 +1,7 @@
 {
-  "name": "element-theme-chalk",
-  "version": "2.15.3",
-  "description": "Element component chalk theme.",
+  "name": "runner-theme-chalk",
+  "version": "0.1.0",
+  "description": "Runner component chalk theme.",
   "main": "lib/index.css",
   "style": "lib/index.css",
   "files": [
@@ -11,20 +11,11 @@
   "scripts": {
     "build": "gulp build"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ElementUI/theme-chalk.git"
-  },
   "keywords": [
-    "element",
+    "runner",
     "theme"
   ],
-  "author": "yi.shyang@ele.me",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/ElementUI/theme-chalk/issues"
-  },
-  "homepage": "https://github.com/ElementUI/theme-chalk#readme",
   "devDependencies": {
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^4.0.0",
