@@ -3,13 +3,6 @@
 
 @include b(tree-select) {
     position: relative;
-
-    .el-input__inner {
-        padding-right: 22px;
-    }
-    .el-input__inner[readonly] {
-        cursor: pointer;
-    }
     
     .input-wrap {
         position: relative;
@@ -43,13 +36,6 @@
                 display: none;
             }
         }
-        &.active .el-input__inner,
-        &:hover .el-input__inner {
-            border-color: $--color-primary;
-        }
-    }
-    &.readonly .input-wrap:hover .el-input__inner {
-        border-color: $--disabled-border-base;
     }
 }
 .run-tree-select-box-wrap {
@@ -88,9 +74,6 @@
     &.readonly .run-tree-select-icon,
     &.readonly .run-tree-select-box {
         display: none;
-    }
-    &.readonly .el-input__inner[readonly] {
-        cursor: default;
     }
 }
 

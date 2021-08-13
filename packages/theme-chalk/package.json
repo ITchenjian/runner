@@ -11,10 +11,15 @@
   "scripts": {
     "build": "gulp build"
   },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:ITchenjian/runner-theme-chalk.git"
+  },
   "keywords": [
     "runner",
     "theme"
   ],
+  "author": "chenjian",
   "license": "MIT",
   "devDependencies": {
     "gulp": "^4.0.2",

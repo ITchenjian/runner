@@ -1,7 +1,6 @@
 'use strict';
 
 const { series, src, dest } = require('gulp');
-const gulp = require('gulp');
 const sass = require('gulp-sass');
 const autoprefixer = require('gulp-autoprefixer');
 const cssmin = require('gulp-cssmin');

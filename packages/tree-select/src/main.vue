@@ -1,7 +1,7 @@
 <template>
     <div class="run-tree-select" :class="{'readonly':readonly===''||readonly===true}">
         <div @click="handleClick($event)" class="input-wrap" :class="{'delete-icon':clearIconFlag,active:visible}">
-            <el-input ref="inputSelect" :placeholder="placeholderText" class="run-tree-select-input" v-model="input">
+            <el-input ref="inputSelect" class="run-tree-select-input" v-model="input" :placeholder="placeholderText" :readonly="readonly">
             </el-input>
             <i class="run-icon-arrow-down run-tree-select-icon" :class="{'active':visible}"></i>
             <i class="run-icon-circle-close run-tree-select-icon" :class="{'active':visible}"></i>
@@ -9,7 +9,7 @@
 
         <div ref="selectList" :id="selectId" class="run-tree-select-box-wrap" :style="{left:sLeft,top:sTop,width:sWidth}" :class="{active:visible}">
             <i class="up-arrow set-position"></i>
-            <div class="run-tree-select-box-list" @mousedown.stop="emptyFn" :class="listClass">
+            <div class="run-tree-select-box-list" @mousedown.stop :class="listClass">
                 <run-scrollbar ref="scrollbar" :style="{maxHeight:maxHeight,height:height}">
                     <el-tree ref="tree" class="filter-tree"
                         :data="datas"
@@ -87,7 +87,6 @@ export default {
         height: String, //下拉列表的高度，不能超过最高值，超过取最大值
         readonly: { type: [Boolean, String], default: false }, //是否只读，默认为可选择,
         clearable: { type: [Boolean, String], default: false }, //可否清除已选中值，默认不显示,
-        isTree: { type: Boolean, default: false }, 
         expandOnClickNode: { type: Boolean, default: false }, //是否展开所有的子节点
         defaultExpandAll: { type: Boolean, default: false }, //是否展开所有的子节点
         listClass: String //列表自定义class
@@ -113,39 +112,21 @@ export default {
     },
     watch: {
         data(val) {
-            this.datas = val;
-            if (this.value) {
-                this.init();
-            }
+            this.init();
         },
         value(val) {
-            this.nodeId = val;
-            this.$nextTick(()=>{
-                this.$refs["tree"].setCurrentKey(val);
-                this.input = this.$refs["tree"].getNode(val).label;
-            })
-            //$emit() 会触发这里更新，但是这里不想执行init
-            if (this.changeFlag === false && this.data && this.data.length > 0) {
-                this.init();
-            } else {
-                this.changeFlag = false;
-            }
-
-            if (val === undefined || val === null) {
-                this.input = "";
-            }
+            this.init();
         },
         input(val) {
             if(this.visible){
                 this.$refs.tree.filter(val);
-            }else {
-                this.init();
             }
-            
         },
     },
     methods: {
-        emptyFn() {},
+        close() {
+            this.visible = false;
+        },
         clear(e) {
             let target = e.target;
             let className = target.className;
@@ -154,9 +135,7 @@ export default {
                 this.$nextTick(function () {
                     this.$refs.inputSelect.$el.querySelector('input').focus();
                 });
-                // this.$emit("input", null);
                 this.$emit("clear");
-                // this.close();
             }
         },
         handleClick(e) {
@@ -175,15 +154,8 @@ export default {
                     data[this.props.value] = null;
                     data[this.props.disabled] = true;
                     this.datas.push(data);
-                    // this.isDefault = false;
                 }
             }
-
-            //初始化展开第一级树
-            /* if (this.isTree === true && (this.nodeId === null || this.nodeId === undefined) && this.isDefault === false) {
-                this.$refs.treeRef.defaultExpandNode();
-                this.isDefault = true;
-            } */
 
             this.visible = true;
 
@@ -219,10 +191,6 @@ export default {
             this.sTop = sTop + (this.top || 0) + "px";
             this.sLeft = x + (this.left || 0) + "px";
             this.sWidth = this.width || parentNode.clientWidth + "px";
-            /* if (this.isTree !== true && this.isDefault === false) {
-                this.scrollToY();
-                this.isDefault = true;
-            } */
             setTimeout(() => {
                 this.addWindowClick();
             });
@@ -241,9 +209,6 @@ export default {
                 }
                 this.$refs.scrollbar.scrollToY(dom.offsetTop);
             });
-        },
-        close() {
-            this.visible = false;
         },
         //注册隐藏下拉列表事件
         addWindowClick() {
@@ -274,14 +239,9 @@ export default {
         },
         update(data) {
             this.input = data[this.props.label];
-            this.changeFlag = true;
             this.$emit("input", data[this.props.value]);
             this.$emit("change", data);
-            //this.close();
             this.removeWindowClick();
-            this.$nextTick(function() {
-                this.changeFlag = false;
-            });
         },
         //移除当前注册的隐藏下拉列表事件
         removeWindowClick() {
@@ -295,7 +255,12 @@ export default {
             return data[this.props.label].indexOf(value) !== -1;
         },
         init() {
-            this.datas = this.data.length ? this.data : JSON.parse(window.localStorage.getItem('orgData'));
+            this.datas = this.data;
+            this.nodeId = this.value;
+            this.$nextTick(()=>{
+                this.$refs["tree"].setCurrentKey(this.value);
+                this.input = !!this.value ? this.$refs["tree"].getNode(this.value).label : "";
+            })
         }
     },
     created () {

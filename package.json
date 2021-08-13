@@ -30,7 +30,11 @@
   "unpkg": "lib/index.js",
   "style": "lib/theme-chalk/index.css",
   "author": "chenjian",
-  "license": "ISC",
+  "license": "MIT",
+  "peerDependencies": {
+    "vue": "^2.5.17",
+    "element-ui": "^2.15.1"
+  },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",

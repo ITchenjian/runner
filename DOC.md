@@ -11,7 +11,7 @@ components.json	组件json，生成入口文件的src/index.js、index.scss的�
 ## 组件开发流程
 
 ```shell
-# 生成element主题包（引用配置参考.babelrc 针对 babel-plugin-component 的配置）
+# 生成element主题包
 npm run theme:ele
 
 # 生成组件架包（xxx组件名，推荐a或a-b形式）
@@ -53,7 +53,7 @@ npm run build
     "packages"
   ],
   "scripts": {
-    //element主题更换
+    //element主题
     "theme:ele": "rimraf packages/theme-element/theme && et -c packages/theme-element/element-variables.scss -o packages/theme-element/theme",
   	//生成单组件架包
   	"new": "node build/bin/new.js",

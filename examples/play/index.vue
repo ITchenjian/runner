@@ -31,8 +31,11 @@
             },
         },
         created () {
-            this.selectData = resTreeSelect.data;
-            this.defaultExpanded = [this.selectData[0][this.nodeKey]]
+            setTimeout(()=>{
+                this.selectData = resTreeSelect.data;
+                this.defaultExpanded = [this.selectData[0][this.nodeKey]]
+                this.selectVal = 'TotalCompany'
+            }, 500)
         }
     };
 </script>
