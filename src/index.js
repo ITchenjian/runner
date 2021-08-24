@@ -3,11 +3,13 @@
 import TestComp from '../packages/test-comp/index.js';
 import Scrollbar from '../packages/scrollbar/index.js';
 import TreeSelect from '../packages/tree-select/index.js';
+import Dialog from '../packages/dialog/index.js';
 
 const components = [
 	TestComp,
 	Scrollbar,
-	TreeSelect];
+	TreeSelect,
+	Dialog];
 
 const install = function(Vue, opts = {}) {
 
@@ -27,5 +29,6 @@ export default {
 	install,
 	TestComp,
 	Scrollbar,
-	TreeSelect
+	TreeSelect,
+	Dialog
 };

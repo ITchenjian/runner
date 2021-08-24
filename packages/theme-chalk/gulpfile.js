@@ -4,6 +4,7 @@ const { series, src, dest } = require('gulp');
 const sass = require('gulp-sass');
 const autoprefixer = require('gulp-autoprefixer');
 const cssmin = require('gulp-cssmin');
+const imagemin = require('gulp-imagemin');
 
 function compile() {
   return src('./src/*.scss')
@@ -22,4 +23,10 @@ function copyfont() {
     .pipe(dest('./lib/fonts'));
 }
 
-exports.build = series(compile, copyfont);
+function copyimage() {
+  return src('./src/images/**')
+    .pipe(imagemin())
+    .pipe(dest('./lib/images'));
+}
+
+exports.build = series(compile, copyfont, copyimage);
