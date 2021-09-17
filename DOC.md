@@ -46,7 +46,7 @@ npm run build
   "name": "runner-ui",
   "version": "1.0.0",
   "description": "A Component Library for Vue.js",
-  "main": "index.js",		//入口文件
+  "main": "lib/runner-ui.common.js",		//入口文件
   "files": [				//npm publish 发布文件
     "lib",
     "src",

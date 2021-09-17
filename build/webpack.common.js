@@ -18,7 +18,7 @@ module.exports = {
     filename: 'runner-ui.common.js',
     chunkFilename: '[id].js',
     libraryExport: 'default',
-    library: 'ELEMENT',
+    library: 'RUNNER',
     libraryTarget: 'commonjs2'
   },
   resolve: {
